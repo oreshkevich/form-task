@@ -36,7 +36,6 @@ class Form extends Component {
 
   validateTel(valE: string) {
     const tel = /^[\d\\+][\d\\(\\)\\ -]{4,14}\d$/;
-    // const num = val.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     return tel.test(valE);
   }
 
@@ -192,7 +191,7 @@ class Form extends Component {
               className="form-input"
               type="tel"
               name="phone"
-              placeholder="Phone"
+              placeholder="+7(000)000-00-00"
               ref={this.telRef}
               onChange={this.handleChange}
               style={{ borderColor: colorTel }}

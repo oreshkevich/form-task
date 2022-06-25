@@ -32,8 +32,23 @@ export const FormTwo = () => {
   };
 
   const validateTel = (valE: string) => {
-    const tel = /^[\d\\+][\d\\(\\)\\ -]{4,14}\d$/;
-    return tel.test(valE);
+    const valString = valE;
+    let matrix = '+7 (___) ___ ____',
+      i = 0,
+      def = matrix.replace(/\D/g, ''),
+      val = valE.replace(/\D/g, ''),
+      newalue = matrix.replace(/[_\d]/g, function (a) {
+        return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
+      });
+    i = newalue.indexOf('_');
+    if (i !== -1) {
+      i < 5 && (i = 3);
+      newalue = newalue.slice(0, i);
+    }
+
+    valE = newalue;
+    setTel(valE);
+    return valString.length > 16;
   };
 
   const validateData = (val: string) => {
@@ -186,14 +201,14 @@ export const FormTwo = () => {
             id="tel"
             value={tel}
             onFocus={(e) => focusHandler(e)}
-            placeholder="Phone"
+            placeholder="+7(000)000-00-00"
             onChange={(e) => setTel(e.target.value)}
           />
         </label>
         <p className="small">
           {validTel
             ? null
-            : 'The number must contain only digits no more than 10'}
+            : 'The number must contain only digits no more than 11'}
         </p>
         <label htmlFor="birthDate">
           Birth date:
@@ -228,7 +243,6 @@ export const FormTwo = () => {
           <button
             className="form-button"
             value="Send"
-            // onClick={handleShow}
             type="submit"
             name="disable_button"
             id="disable_button"
