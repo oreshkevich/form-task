@@ -172,7 +172,7 @@ export const FormTwo = () => {
         <p className="small">
           {valid
             ? null
-            : 'The name must contain from 3 to 30 characters space and surname from 3 to 30'}
+            : 'The first name must contain from 3 to 30 characters space and the last name from 3 to 30 Latin alphabet'}
         </p>
         <label htmlFor="email">
           Email:
